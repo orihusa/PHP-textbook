@@ -65,15 +65,20 @@
 		<h4>外部ファイルの扱い</h4>
 		<ul>
 			<li>ファイルアップロードを受信する	<a href="<?php print($part3); ?>sample23_input.html">sample23</a>
-			<li>ファイルに内容を書き込む	<a href="<?php print($part3); ?>samplexx.php">sample24</a>
-			<li>ファイルの読み込み	<a href="<?php print($part3); ?>samplexx.php">sample25</a>
-			<li>RSSの情報を読み込む	<a href="<?php print($part3); ?>samplexx.php">sample26</a>
+			<li>ファイルに内容を書き込む	<a href="<?php print($part3); ?>sample24.php">sample24</a>
+			<li>ファイルの読み込み	<a href="<?php print($part3); ?>sample25.php">sample25</a>
+			<li>RSSの情報を読み込む	<a href="<?php print($part3); ?>sample26.php">sample26</a>
 		</ul>
 	</p>
 	<br>
 
 	<h3>４章：データベースの基本</h3>
 	<p>
+		<h4>導入</h4>
+		<ul>
+			<li>	<a href="<?php print($part3); ?>sample.html">samplexx</a>
 
+		</ul>
+	</p>
 </body>
 </html>

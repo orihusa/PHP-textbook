@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3c.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title>sample 1-2.6</title>
+</head>
+
+<body>
+	<h3>複数選択可能なチェックボックスの値を取得する</h3>
+	<form action="sample12.php" method="get">
+		<dl>
+			<dt>ご予約希望日（複数選択可）：</dt>
+			<dd>
+				<ul>
+					<li>
+						<input id="reserve_1" type="checkbox" name="reserve[]" value="1/1" >
+						<label for="reserve_1">１月１日</label>
+					</li>
+					<li>
+						<input id="reserve_2" type="checkbox" name="reserve[]" value="1/2" >
+						<label for="reserve_2">１月２日</label>
+					</li>
+					<li>
+						<input id="reserve_3" type="checkbox" name="reserve[]" value="1/3" >
+						<label for="reserve_3">１月３日</label>
+					</li>
+				</ul>
+			</dd>
+		</dl>
+		<input type="submit" value="送信する" >
+	</form>
+<?php
+// チェックボックスのname属性には[]記号を付けてこれを配列とする。
+?>
+</body>
+</html>
