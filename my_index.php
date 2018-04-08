@@ -10,6 +10,7 @@
 	$homePath = "http://www.orihusa.jp/";
 	$workPath = $homePath . "php-textbook/";
 	$part3 = $workPath . "part3/";
+	$part5 = $workPath . "shop/";
 ?>
 	<h2>よくわかるPHPの教科書</h2>
 	<hr width="96%">
@@ -76,7 +77,35 @@
 	<p>
 		<h4>導入</h4>
 		<ul>
-			<li>	<a href="<?php print($part3); ?>sample.html">samplexx</a>
+			<li>データベースについて
+			<li>MySQLを使ってみよう---ラズパイに導入する事で実現
+			<li>データベースを使ってみよう---データベースを新規作成し、テーブルを作る
+		</ul>
+	</p>
+		<h4>SQLの基本</h4>
+		<ul><li>SELECT文などの基本構文</li></ul>
+	</p>
+	</p>
+		<h4>SQLの応用</h4>
+		<ul><li>WHERE句などの検索条件</li></ul>
+	</p>
+	<br>
+
+	<h3>５章：実用的なプログラムの制作</h3>
+	<p>
+		<h4>PHP+DBで本格的なWebシステムを作る</h4>
+		<ul>
+			<li>プロジェクトの準備	（本とは異なり、A5:SQL Mk-2 を使用する）
+			<li>MySQLに接続する	<a href="<?php print($part5); ?>step02.php">step02</a>
+			<li>文字コードをセットする	<a href="<?php print($part5); ?>step03.php">step03</a>
+			<li>SQLを実行する	<a href="<?php print($part5); ?>step04.php">step04</a>
+			<li>レコードセットからデータを取得する	<a href="<?php print($part5); ?>step05.php">step05</a>
+			<li>フォームからの情報を保存するSQL	<a href="<?php print($part5); ?>step06_input.php">step06</a>
+			<li>SQLを安全に保つ	<a href="<?php print($part5); ?>step07.php">step07</a>
+			<li>データの一覧画面を作る	<a href="<?php print($part5); ?>step08.php">step08</a>
+
+
+
 
 		</ul>
 	</p>
