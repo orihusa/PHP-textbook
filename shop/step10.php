@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3c.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<title>P1.step12</title>
+	<title>P1.step10</title>
 </head>
 
 <body>
@@ -39,16 +39,14 @@ $recordSet = mysqli_query($db,
 
 ?>
 
-	<h3>商品管理</h3>
+	<h3>件数の多いレコードを、ページを分ける「ページング」</h3>
 
-	<p><a href="step06_input.php">新しい商品を登録する</a></p>
 	<table border=1 width="100%">
 		<tr>
 			<th scope="col">ID</th>
 			<th scope="col">メーカー</th>
 			<th scope="col">商品名</th>
 			<th scope="col">価格</th>
-			<th scope="col">編集・削除</th>
 		</tr>
 <?php
 	while ($table = mysqli_fetch_assoc($recordSet)) {
@@ -58,9 +56,6 @@ $recordSet = mysqli_query($db,
 			<td><?php print(htmlspecialchars($table['name']));?></td>
 			<td><?php print(htmlspecialchars($table['item_name']));?></td>
 			<td><?php print(htmlspecialchars($table['price']));?></td>
-			<td><a href="step11_update.php?id=<?php print(htmlspecialchars($table['id']));?>">編集</a>
-				<a href="step12_delete.php?id=<?php print(htmlspecialchars($table['id']));?>"
-					onclick="return confirm('削除してよろしいですか？');">削除</a></td>
 		</tr>
 <?php
 	}
@@ -71,7 +66,7 @@ $recordSet = mysqli_query($db,
 <?php
 	if ($page > 1) {
 ?>
-		<li><a href="step11.php?page=<?php print($page - 1); ?>">前のページへ</a></li>
+		<li><a href="step10.php?page=<?php print($page - 1); ?>">前のページへ</a></li>
 <?php
 	} else {
 ?>
@@ -83,7 +78,7 @@ $recordSet = mysqli_query($db,
 <?php
 	if ($page < $maxPage) {
 ?>
-		<li><a href="step11.php?page=<?php print($page + 1); ?>">次のページへ</a></li>
+		<li><a href="step10.php?page=<?php print($page + 1); ?>">次のページへ</a></li>
 <?php
 	} else {
 ?>

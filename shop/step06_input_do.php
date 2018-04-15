@@ -12,3 +12,4 @@ $sql = sprintf('INSERT INTO my_items SET maker_id=%d,item_name="%s",price=%d,key
 mysqli_query($db, $sql) or die(mysqli_error($db));
 ?>
 <p>商品を登録しました</p>
+<p><a href="index.php">一覧に戻る</a></p>

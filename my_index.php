@@ -103,7 +103,10 @@
 			<li>フォームからの情報を保存するSQL	<a href="<?php print($part5); ?>step06_input.php">step06</a>
 			<li>SQLを安全に保つ	<a href="<?php print($part5); ?>step07.php">step07</a>
 			<li>データの一覧画面を作る	<a href="<?php print($part5); ?>step08.php">step08</a>
-
+			<li>接続プログラムを共通プログラムにする	<a href="<?php print($part5); ?>step09.php">step09</a>
+			<li>件数の多いレコードを、ページを分ける	<a href="<?php print($part5); ?>step10.php">step10</a>
+			<li>間違えたデータを編集する、編集画面	<a href="<?php print($part5); ?>step11.php">step11</a>
+			<li>いらないデータを削除する、削除機能	<a href="<?php print($part5); ?>index.php">index(step12)</a>
 
 
 
