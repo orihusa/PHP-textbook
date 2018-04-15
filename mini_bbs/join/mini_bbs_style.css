@@ -1,0 +1,26 @@
+/* ==================================== */
+/* スタイルシート                       */
+/* ==================================== */
+
+
+/* タグ毎の指定 */
+body {
+	background-color: #DDEEFF;
+}
+
+h3 {
+	background-color: #0000DD;
+	color: #FFFFFF;
+	padding-left: 1em;
+}
+
+/* クラスでの指定 */
+.required {
+	background-color: #FF3333;
+	color: #FFFFFF;
+	margin-left: 1em;
+}
+
+.error {
+	color: #FF3333;
+}
