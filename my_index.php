@@ -11,6 +11,7 @@
 	$workPath = $homePath . "php-textbook/";
 	$part3 = $workPath . "part3/";
 	$part5 = $workPath . "shop/";
+	$mnbbs = $workPath . "mini_bbs/join/";
 ?>
 	<h2>よくわかるPHPの教科書</h2>
 	<hr width="96%">
@@ -107,8 +108,15 @@
 			<li>件数の多いレコードを、ページを分ける	<a href="<?php print($part5); ?>step10.php">step10</a>
 			<li>間違えたデータを編集する、編集画面	<a href="<?php print($part5); ?>step11.php">step11</a>
 			<li>いらないデータを削除する、削除機能	<a href="<?php print($part5); ?>index.php">index(step12)</a>
-
-
+		</ul>
+		<h4>「Twitter風ひとこと掲示板」を作成する</h4>
+		<ul>
+			<li>データベースを設計する
+			<li>データベースを作る
+			<li>会員登録用の画面を作る
+			<li>会員登録用のプログラムを作る	<a href="<?php print($mnbbs); ?>index.php">index</a>
+			<li>周辺の画面と処理を作る
+			<li>ログインの仕組みを作成する（ここから）
 
 		</ul>
 	</p>

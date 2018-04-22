@@ -8,6 +8,7 @@
 
 <body>
 <?php
+	require('../dbconnect.php');
 	session_start();
 
 	if (!empty($_POST)) {
@@ -37,16 +38,37 @@
 			}
 		}
 
-
-
-
-
-		// エラーが無い場合、セッションに値を保存する。
+		// 重複アカウントのチェック
 		if (empty($error)) {
+			$sql = sprintf(
+						'SELECT COUNT(*) AS cnt FROM members
+							WHERE email="%s"',
+							mysqli_real_escape_string($db, $_POST['email'])
+				);
+			$record = mysqli_query($db, $sql) or die(mysqli_error($db));
+			$table = mysqli_fetch_assoc($record);
+			if ($table['cnt'] > 0) {
+				$error['email'] = 'duplicate';
+			}
+		}
+
+		// 入力項目に異常が無い場合
+		if (empty($error)) {
+			// 画像をアップロードする
+			$image = date('YmdHis') . $_FILES['image']['name'];
+			move_uploaded_file($_FILES['inamge']['tmp_name'], '../member_picture/' . $image);
+
 			$_SESSION['join'] = $_POST;
+			$_SESSION['join']['image'] = $imageT;
 			header('Location: check.php');
 			exit();
 		}
+	}
+
+	// 書き直し
+	if ($_REQUEST['action'] == 'rewrite') {
+		$_POST = $_SESSION['join'];
+		$error['rewrite'] = true;
 	}
 ?>
 	<h3>会員登録</h3>
@@ -76,6 +98,9 @@
 				<?php if (isset($error['email']) && $error['email'] == 'blank'): ?>
 				<p class="error">* メールアドレスを入力してください。</p>
 				<?php endif; ?>
+				<?php if (isset($error['email']) && $error['email'] == 'duplicate'): ?>
+				<p class="error">* 指定されたメールアドレスは既に登録されています。</p>
+				<?php endif; ?>
 			</dd>
 
 			<dt>パスワード<span class="required">必須</span></dt>
@@ -93,7 +118,15 @@
 			</dd>
 
 			<dt>写真など</dt>
-			<dd><input type="file" name="image" size="35" ></dd>
+			<dd>
+				<input type="file" name="image" size="35" >
+				<?php if ($error['image'] == 'type'): ?>
+				<p class="error">* 写真などは「.gif」または「.jpg」の画像を指定して下さい。</p>
+				<?php endif; ?>
+				<?php if (!empty($error)): ?>
+				<p class="error">* 恐れ入りますが、画像を改めて指定して下さい。</p>
+				<?php endif; ?>
+			</dd>
 		</dl>
 
 		<div><input type="submit" value="入力内容を確認する"></div>
