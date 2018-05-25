@@ -8,10 +8,26 @@ body {
 	background-color: #DDEEFF;
 }
 
+h2 {
+	background-color: #0000DD;
+	color: #FFFFFF;
+	padding-left: 1em;
+}
+
 h3 {
 	background-color: #0000DD;
 	color: #FFFFFF;
 	padding-left: 1em;
+}
+
+/* タグ、クラスでの指定 */
+div.msg {
+	border-top: 2px groove #c0c0c0;
+}
+
+p.day {
+	color: #808080;
+	font-size: small;
 }
 
 /* クラスでの指定 */

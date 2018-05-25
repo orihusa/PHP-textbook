@@ -3,13 +3,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>会員登録</title>
+	<link rel="stylesheet" type="text/css" href="../mini_bbs_style.css">
 </head>
 
 <body>
 	<h3>会員登録</h3>
 
 	<p>ユーザー登録が完了しました。</p>
-	<p><a href="../">ログインする</a></p>
+	<p><a href="login.php">ログインする</a></p>
 
 </body>
 </html>

@@ -11,7 +11,8 @@
 	$workPath = $homePath . "php-textbook/";
 	$part3 = $workPath . "part3/";
 	$part5 = $workPath . "shop/";
-	$mnbbs = $workPath . "mini_bbs/join/";
+	$mnbbs = $workPath . "mini_bbs/";
+	$mnbbsjoin = $workPath . "mini_bbs/join/";
 ?>
 	<h2>よくわかるPHPの教科書</h2>
 	<hr width="96%">
@@ -114,9 +115,11 @@
 			<li>データベースを設計する
 			<li>データベースを作る
 			<li>会員登録用の画面を作る
-			<li>会員登録用のプログラムを作る	<a href="<?php print($mnbbs); ?>index.php">index</a>
+			<li>会員登録用のプログラムを作る	<a href="<?php print($mnbbsjoin); ?>index.php">index</a>
 			<li>周辺の画面と処理を作る
-			<li>ログインの仕組みを作成する（ここから）
+			<li>ログインの仕組みを作成する	<a href="<?php print($mnbbsjoin); ?>login.php">login</a>
+			<li>投稿画面を作る	<a href="<?php print($mnbbs); ?>msgBoard.php">Message Board</a>
+			<li>返信機能を付ける	Message Board
 
 		</ul>
 	</p>
