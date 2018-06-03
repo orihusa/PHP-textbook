@@ -120,6 +120,8 @@
 			<li>ログインの仕組みを作成する	<a href="<?php print($mnbbsjoin); ?>login.php">login</a>
 			<li>投稿画面を作る	<a href="<?php print($mnbbs); ?>msgBoard.php">Message Board</a>
 			<li>返信機能を付ける	Message Board
+			<li>個別画面を作る（返信元のメッセージ確認）
+			<li>プログラムをすっきりさせる
 
 		</ul>
 	</p>

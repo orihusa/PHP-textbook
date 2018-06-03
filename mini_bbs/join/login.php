@@ -2,6 +2,7 @@
 session_start();
 require('../dbconnect.php');
 
+// クッキーに値があれば、自動ログインする
 if (isset($_COOKIE['email']) && $_COOKIE['email'] != '') {
 	$_POST['email'] = $_COOKIE['email'];
 	$_POST['password'] = $_COOKIE['password'];
@@ -22,10 +23,10 @@ if (!empty($_POST)) {
 			$_SESSION['id'] = $table['id'];
 			$_SESSION['time'] = time();
 
-			// ログイン情報を記録する（14日間保存）
+			// ログイン情報を記録する（３日間保存）
 			if (isset($_POST['save']) && $_POST['save'] == 'on') {
-				setcookie('email', $_POST['email'], time()+3600*24*14);
-				setcookie('password', $_POST['password'], time()+3600*24*14);
+				setcookie('email', $_POST['email'], time()+3600*24*3);
+				setcookie('password', $_POST['password'], time()+3600*24*3);
 			}
 
 //			header('Location: index.php');
