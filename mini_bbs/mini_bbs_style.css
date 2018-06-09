@@ -40,3 +40,18 @@ p.day {
 .error {
 	color: #FF3333;
 }
+
+/* ページングの書式設定 */
+.paging {
+	text-align: center;
+	width: 80%;
+}
+.paging li {
+	width: 200px;
+	display: inline-block;
+	text-align: center;
+	border:1px solid blue;
+}
+.paging li a {
+	display: block;
+}

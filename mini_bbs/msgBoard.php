@@ -34,7 +34,28 @@ if (!empty($_POST)) {
 }
 
 // 投稿を取得する
-$sql = sprintf('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id ORDER BY p.created DESC');
+$page = '';
+if (isset($_REQUEST['page'])) {
+	$page = $_REQUEST['page'];
+}
+if ($page == '') {
+	$page = 1;
+}
+$page = max($page, 1);
+
+// ---最終ページを取得する（件数を取得して最大のページ数を計算する）
+$sql = 'SELECT COUNT(*) AS cnt FROM posts';
+$recordSet = mysqli_query($db, $sql);
+$table = mysqli_fetch_assoc($recordSet);
+$maxPage = ceil($table['cnt'] / 5);
+
+$page = min($page, $maxPage);
+
+// ---SQLのLIMIT制限用
+$start = ($page - 1) * 5;
+$start = max(0, $start);
+
+$sql = sprintf('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id ORDER BY p.created DESC LIMIT %d, 5', $start);
 $posts = mysqli_query($db, $sql) or die(mysqli_error($db));
 
 // 返信の場合
@@ -46,6 +67,17 @@ if (isset($_REQUEST['res'])) {
 	$table = mysqli_fetch_assoc($record);
 	$message = '@' . $table['name'] . ' ' . $table['message'];
 }
+
+// htmlspecialcharsのショートカット
+function h($value) {
+	return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+// 本文内のURLにリンクを設定します
+function makeLink($value) {
+	return mb_ereg_replace("(https?)(://[[:alnum:]\+\$\;\?\.%,!#~*/:@&=_-]+)", '<a href="\1\2">\1\2</a>', $value);
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3c.org/1999/xhtml">
@@ -61,6 +93,9 @@ if (isset($_REQUEST['res'])) {
 		<h2>ひとこと掲示板</h2>
 	</div>
 	<div id="content">
+		<div style="text-align: right">
+			<a href="./join/logout.php">ログアウト</a>
+		</div>
 		<form action="" method="post">
 			<dl>
 				<dt><?php
@@ -71,12 +106,14 @@ if (isset($_REQUEST['res'])) {
 				<dd>
 					<textarea name="message" cols="50" rows="5"><?php
 						if (isset($message)) {
-							echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+						//	echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+							echo h($message);
 						}
 					?></textarea>
 					<input type="hidden" name="reply_post_id" value="<?php
 						if (isset($_REQUEST['res'])) {
-							echo htmlspecialchars($_REQUEST['res'], ENT_QUOTES, 'UTF-8');
+						//	echo htmlspecialchars($_REQUEST['res'], ENT_QUOTES, 'UTF-8');
+							echo h($_REQUEST['res']);
 						}
 					?>">
 				</dd>
@@ -89,22 +126,50 @@ if (isset($_REQUEST['res'])) {
 while($post = mysqli_fetch_assoc($posts)):
 ?>
 		<div class="msg">
-			<img src="member_picture/<?php echo htmlspecialchars($post['picture'], ENT_QUOTES, 'UTF-8'); ?>" width="48" height="48" alt="<?php echo htmlspecialchars($post['name'], ENT_QUOTES, 'UTF-8'); ?>">
+			<img src="member_picture/<?php echo h($post['picture']); ?>" width="48" height="48" alt="<?php echo h($post['name']); ?>">
 		<p>
-			<?php echo htmlspecialchars($post['message'], ENT_QUOTES, 'UTF-8'); ?>
-			<span class="name">（<?php echo htmlspecialchars($post['name'], ENT_QUOTES, 'UTF-8'); ?>）</span>
-			[<a href="msgBoard.php?res=<?php echo htmlspecialchars($post['id'], ENT_QUOTES, 'UTF-8'); ?>">Re</a>]
+			<?php echo makeLink(h($post['message'])); ?>
+			<span class="name">（<?php echo h($post['name']); ?>）</span>
+			[<a href="msgBoard.php?res=<?php echo h($post['id']); ?>">Re</a>]
 		</p>
 		<p class="day">
-			<a href="view.php?id=<?php echo htmlspecialchars($post['id'], ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($post['created'], ENT_QUOTES, 'UTF-8'); ?></a>
+			<a href="view.php?id=<?php echo h($post['id']); ?>"><?php echo h($post['created']); ?></a>
 		<?php if ($post['reply_post_id'] > 0): ?>
-			<a href="view.php?id=<?php echo htmlspecialchars($post['reply_post_id'], ENT_QUOTES, 'UTF-8'); ?>">返信元のメッセージ</a>
+			<a href="view.php?id=<?php echo h($post['reply_post_id']); ?>">返信元のメッセージ</a>
+		<?php endif; ?>
+		<?php if ($_SESSION['id'] == $post['member_id']): ?>
+			[<a href="delete.php?id=<?php echo h($post['id']); ?>" style="color:#F33;">削除</a>]
 		<?php endif; ?>
 		</p>
 		</div>
 <?php
 endwhile;
 ?>
+
+		<ul class="paging">
+<?php
+if ($page > 1) {
+?>
+			<li><a href="msgBoard.php?page=<?php print($page - 1); ?>">前のページへ</a></li>
+<?php
+} else {
+?>
+			<li>前のページへ</li>
+<?php
+}
+?>
+<?php
+if ($page < $maxPage) {
+?>
+			<li><a href="msgBoard.php?page=<?php print($page + 1); ?>">次のページへ</a></li>
+<?php
+} else {
+?>
+			<li>次のページへ</li>
+<?php
+}
+?>
+		</ul>
 	</div>
 	<div id="foot">
 		<p>

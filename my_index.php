@@ -121,8 +121,22 @@
 			<li>投稿画面を作る	<a href="<?php print($mnbbs); ?>msgBoard.php">Message Board</a>
 			<li>返信機能を付ける	Message Board
 			<li>個別画面を作る（返信元のメッセージ確認）
-			<li>プログラムをすっきりさせる
-
+			<li>プログラムをすっきりさせる　　処理の共通化
+			<li>URLにリンクを設置する　　投稿文書内のURLを識別し、自動的にリンクを張る
+			<li>投稿を削除できるようにする	<a href="<?php print($mnbbs); ?>delete.php">Delete</a>
+			<li>ページングを設置する	<a href="<?php print($mnbbs); ?>msgBoard.php">Message Board</a>
+			<li>ログアウトを設置する	<a href="<?php print($mnbbsjoin); ?>logout.php">logout</a>
+		</ul>
+		<h4>ライブラリやフレームワークを使う</h4>
+		<ul>
+			<li>オブジェクト指向とライブラリ</li>
+			<li>PHPのフレームワーク<br>
+				<ul>
+					<li><a href="https://framework.zend.com/">Zend Framework （ゼンド フレームワーク）</a>
+					<li><a href="https://cakephp.org/jp/">CakePHP （ケイク ピーエイチピー）</a>
+					<li><a href="http://www.symfony-project.org/">Symfony （シンフォニー）</a>
+				</ul>
+			</li>
 		</ul>
 	</p>
 </body>
